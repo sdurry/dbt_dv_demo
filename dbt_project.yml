@@ -37,6 +37,7 @@ models:
         - 'raw_vault'
       hubs:
         +table_format: iceberg
+        +access: public
         +tags:
           - 'hub'
       links:
