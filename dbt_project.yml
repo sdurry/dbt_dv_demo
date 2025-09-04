@@ -1,4 +1,4 @@
-name: dbtvault_snowflake_demo
+name: dbt_dv
 profile: tpch
 version: '5.4.0'
 require-dbt-version: ['>=1.0.0', '<2.0.0']
@@ -18,10 +18,10 @@ test-paths:
   - tests
 vars:
   load_date: '1992-01-08'
-  tpch_size: 10 #1, 10, 100, 1000, 10000
 
 models:
-  dbtvault_snowflake_demo:
+  dbt_dv:
+    +file_format: delta
     raw_stage:
       +materialized: view
       +tags:
@@ -36,6 +36,7 @@ models:
       +tags:
         - 'raw_vault'
       hubs:
+        +table_format: iceberg
         +tags:
           - 'hub'
       links:
