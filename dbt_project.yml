@@ -21,32 +21,36 @@ vars:
 
 models:
   dbt_dv:
-    +file_format: delta
+    +file_format: iceberg
     raw_stage:
       +materialized: view
       +tags:
         - 'raw'
     stage:
-      +materialized: view
+      +materialized: table
       +tags:
         - 'stage'
       +enabled: true
     raw_vault:
+      +table_format: iceberg
+      +file_format: delta
       +materialized: incremental
       +tags:
         - 'raw_vault'
       hubs:
-        +table_format: iceberg
         +access: public
         +tags:
           - 'hub'
       links:
+        +access: public
         +tags:
           - 'link'
       sats:
+        +access: public
         +tags:
           - 'satellite'
       t_links:
+        +access: public
         +tags:
           - 't_link'
 flags:
