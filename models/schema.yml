@@ -42,6 +42,8 @@ sources:
       We use the [TPCH dataset](https://docs.snowflake.com/en/user-guide/sample-data-tpch.html)
       to create a sample project to emulate what a production project might look like!
     database: samples
+    config:
+      freshness: null
     schema: tpch
     tables:
       - name: customer
@@ -123,8 +125,6 @@ sources:
 
       - name: nation
         description: nation mapping
-        config:
-          freshness: null
         columns:
           - name: n_nationkey
             description: 25 nations are populated
@@ -149,8 +149,6 @@ sources:
 
       - name: part
         description: main part table
-        config:
-          freshness: null
         columns:
           - name: p_partkey
             description: SF*200,000 are populated
@@ -180,8 +178,6 @@ sources:
 
       - name: partsupp
         description: main part supplier table
-        config:
-          freshness: null
         columns:
           - name: ps_partkey
             description: Foreign Key to P_PARTKEY
@@ -206,8 +202,6 @@ sources:
 
       - name: region
         description: region mapping
-        config:
-          freshness: null
         columns:
           - name: r_regionkey
             description: 5 regions are populated
