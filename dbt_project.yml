@@ -4,6 +4,9 @@ version: '5.4.0'
 require-dbt-version: ['>=1.0.0', '<2.0.0']
 config-version: 2
 
+dbt-cloud: 
+    project-id: 11432
+
 analysis-paths:
   - analysis
 clean-targets:
