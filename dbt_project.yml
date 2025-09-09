@@ -34,6 +34,11 @@ models:
     raw_vault:
       +table_format: iceberg
       +materialized: incremental
+      +freshness:
+        build_after:
+          count: 12
+          period: hour
+          updates_on: all
       +tags:
         - 'raw_vault'
       hubs:

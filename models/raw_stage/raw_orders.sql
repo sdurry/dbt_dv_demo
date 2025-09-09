@@ -1,3 +1,15 @@
+{{
+    config(
+      freshness={
+        "build_after": {
+          "count": 90,
+          "period": 'minute',
+          "updates_on": 'any' 
+        } 
+      }
+    )
+}}
+
 SELECT
     a.L_ORDERKEY AS ORDERKEY,
     a.L_PARTKEY AS PARTKEY ,
@@ -35,7 +47,7 @@ SELECT
     d.N_COMMENT AS CUSTOMER_NATION_COMMENT,
     e.R_NAME AS CUSTOMER_REGION_NAME,
     e.R_COMMENT AS CUSTOMER_REGION_COMMENT
-FROM {{ source('tpch_sample', 'orders') }} AS b
+FROM {{ source('tpch_now', 'orders') }} AS b
 LEFT JOIN {{ source('tpch_sample', 'lineitem') }} AS a
     ON a.L_ORDERKEY = b.O_ORDERKEY
 LEFT JOIN {{ source('tpch_sample', 'customer') }} AS c
