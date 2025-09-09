@@ -21,7 +21,7 @@ vars:
 
 models:
   dbt_dv:
-    +file_format: iceberg
+    +file_format: delta
     raw_stage:
       +materialized: view
       +tags:
@@ -33,7 +33,6 @@ models:
       +enabled: true
     raw_vault:
       +table_format: iceberg
-      +file_format: delta
       +materialized: incremental
       +tags:
         - 'raw_vault'
