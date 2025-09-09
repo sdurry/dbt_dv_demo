@@ -40,10 +40,7 @@ sources:
             description: numeric representation of the shipping priority, zero being the default
           - name: o_comment
             description: '{{ doc("comment") }}'
-        config:
-          freshness: # make this a warning as this is static data
-            warn_after: {count: 6, period: hour}
-          loaded_at_field: o_orderdate::timestamp
+
       - name: customer
         description: main customer table
         columns:
@@ -70,7 +67,6 @@ sources:
             description: market segment of the customer
           - name: c_comment
             description: '{{ doc("comment") }}'
-
       - name: lineitem
         description: main lineitem table
         columns:
