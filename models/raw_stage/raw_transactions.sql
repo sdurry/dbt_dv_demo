@@ -10,7 +10,7 @@ SELECT
         WHEN 1 THEN 'DR'
         WHEN 2 THEN 'CR'
     END AS VARCHAR(2)) AS TYPE
-FROM {{ source('tpch_sample', 'orders') }}  AS b
+FROM {{ source('tpch_now', 'orders') }}  AS b
 LEFT JOIN {{ source('tpch_sample', 'customer') }} AS c
     ON b.O_CUSTKEY = c.C_CUSTKEY
 WHERE b.O_ORDERDATE = TO_DATE('{{ var('load_date') }}')

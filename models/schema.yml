@@ -2,13 +2,9 @@ version: 2
 
 
 sources:
-  - name: tpch_sample
-    description: >-
-      Welcome to the dbt Labs demo dbt project!  
-      We use the [TPCH dataset](https://docs.snowflake.com/en/user-guide/sample-data-tpch.html)
-      to create a sample project to emulate what a production project might look like!
-    database: samples
-    schema: tpch
+  - name: tpch_now
+    database: sa_dev
+    schema: tpch_now
     tables:
       - name: orders
         description: main order tracking table
@@ -18,7 +14,6 @@ sources:
             tests:
               - unique
               - not_null
-
           - name: o_custkey
             description: Foreign Key to C_CUSTKEY
             tests:
@@ -41,6 +36,14 @@ sources:
           - name: o_comment
             description: '{{ doc("comment") }}'
 
+  - name: tpch_sample
+    description: >-
+      Welcome to the dbt Labs demo dbt project!  
+      We use the [TPCH dataset](https://docs.snowflake.com/en/user-guide/sample-data-tpch.html)
+      to create a sample project to emulate what a production project might look like!
+    database: samples
+    schema: tpch
+    tables:
       - name: customer
         description: main customer table
         columns:
@@ -75,7 +78,7 @@ sources:
             tests:
               - relationships:
                   arguments:
-                    to: source('tpch_sample', 'orders')
+                    to: source('tpch_now', 'orders')
                     field: o_orderkey
           - name: l_partkey
             description: Foreign key to P_PARTKEY, first part of the compound Foreign Key to (PS_PARTKEY,PS_SUPPKEY) with L_SUPPKEY
@@ -120,6 +123,8 @@ sources:
 
       - name: nation
         description: nation mapping
+        config:
+          freshness: null
         columns:
           - name: n_nationkey
             description: 25 nations are populated
@@ -144,6 +149,8 @@ sources:
 
       - name: part
         description: main part table
+        config:
+          freshness: null
         columns:
           - name: p_partkey
             description: SF*200,000 are populated
@@ -173,6 +180,8 @@ sources:
 
       - name: partsupp
         description: main part supplier table
+        config:
+          freshness: null
         columns:
           - name: ps_partkey
             description: Foreign Key to P_PARTKEY
@@ -197,6 +206,8 @@ sources:
 
       - name: region
         description: region mapping
+        config:
+          freshness: null
         columns:
           - name: r_regionkey
             description: 5 regions are populated
