@@ -1,0 +1,15 @@
+catalogs:
+  - name: dbt_sdurry_dev
+    active_write_integration: unity_catalog_integration_dev
+    write_integrations:
+      - name: unity_catalog_integration_dev
+        catalog_type: unity
+        table_format: iceberg
+        file_format: delta
+  - name: dbt_sdurry_prod
+    active_write_integration: unity_catalog_integration_prod
+    write_integrations:
+      - name: unity_catalog_integration_prod
+        catalog_type: unity
+        table_format: iceberg
+        file_format: delta

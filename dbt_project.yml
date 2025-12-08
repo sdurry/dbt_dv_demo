@@ -35,7 +35,11 @@ models:
         - 'stage'
       +enabled: true
     raw_vault:
-      +table_format: iceberg
+      +catalog_name: |
+        {%- if  env_var('DBT_CLOUD_ENVIRONMENT_TYPE','dev') == 'dev' -%} dbt_sdurry_dev
+        {%- else -%} dbt_sdurry_prod
+        {%- endif -%}
+      +table_format: iceberg 
       +materialized: incremental
       +freshness:
         build_after:
@@ -60,5 +64,6 @@ models:
         +access: public
         +tags:
           - 't_link'
+
 flags:
   require_generic_test_arguments_property: true
