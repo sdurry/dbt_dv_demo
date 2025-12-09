@@ -1,0 +1,13 @@
+models:
+- name: my_dbt_model
+  description: This model provides a monthly summary of orders and customers, capturing the total number of orders and unique customers for each month.
+  columns:
+  - name: month_at
+    description: The timestamp indicating the month for which the data is aggregated.
+    data_tests:
+      - unique
+      - not_null
+  - name: order_count
+    description: The total number of orders placed in the specified month.
+  - name: customer_count
+    description: The total number of unique customers who placed orders in the specified month.
