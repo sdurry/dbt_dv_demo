@@ -1,15 +1,15 @@
 catalogs:
   - name: dbt_sdurry_dev
-    active_write_integration: unity_catalog_integration_dev
+    active_write_integration: dbt_sdurry_dev
     write_integrations:
-      - name: unity_catalog_integration_dev
+      - name: dbt_sdurry_dev
         catalog_type: unity
         table_format: iceberg
         file_format: delta
   - name: dbt_sdurry_prod
-    active_write_integration: unity_catalog_integration_prod
+    active_write_integration: dbt_sdurry_prod
     write_integrations:
-      - name: unity_catalog_integration_prod
+      - name: dbt_sdurry_prod
         catalog_type: unity
         table_format: iceberg
         file_format: delta
