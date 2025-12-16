@@ -25,6 +25,11 @@ vars:
 models:
   dbt_dv:
     +file_format: delta
+    repro:
+      +schema: test
+      +materialized: table
+      +tags:
+        - 'repro'
     raw_stage:
       +materialized: view
       +tags:
