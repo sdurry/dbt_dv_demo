@@ -21,7 +21,7 @@ sensor_baseline AS (
     AVG(wind_speed) as avg_wind_speed,
     COUNT(*) as reading_count,
     COUNT(CASE WHEN status = 'ERROR' THEN 1 END) as error_count
-  FROM performance_test.src_iot_readings
+  FROM {{ source('synthetic_data','src_iot_readings') }}
   WHERE reading_timestamp >= '2023-01-01'
     AND reading_timestamp < '2024-01-01'
   GROUP BY sensor_id, location_id, DATE_TRUNC('hour', reading_timestamp)
@@ -237,7 +237,7 @@ SELECT
   SQRT(ABS(hourly_seasonal_deviation)) as sqrt_seasonal_dev
  
 FROM sensor_health_metrics s
-JOIN performance_test.src_locations l ON s.location_id = l.location_id
+JOIN {{ source('synthetic_data','src_locations') }} l ON s.location_id = l.location_id
 LEFT JOIN upstream_dependency
   ON 1=0  -- Always false, no actual join, just establishes dbt ref() dependency
 WHERE s.reading_count >= 10  --{# Ensure sufficient data quality #}
