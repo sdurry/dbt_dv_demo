@@ -1,3 +1,13 @@
+{{
+    config(
+        materialized='vault_insert_by_period',
+        meta={
+            'timestamp_field': 'LOAD_DATE',
+            'period': 'day'
+        }
+    )
+}}
+
 {%- set source_model = "v_stg_orders" -%}
 {%- set src_pk = "ORDER_PK" -%}
 {%- set src_nk = "ORDERKEY" -%}

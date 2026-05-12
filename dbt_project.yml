@@ -21,6 +21,7 @@ test-paths:
   - tests
 vars:
   load_date: '1992-01-08'
+  hash: 'md5'
 
 models:
   dbt_dv:
@@ -40,7 +41,6 @@ models:
         {%- else -%} dbt_sdurry_prod
         {%- endif -%}
       +table_format: iceberg 
-      +materialized: incremental
       +freshness:
         build_after:
           count: 12
