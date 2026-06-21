@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: synthetic_data
+    database: dbt_sdurry_dev
+    schema: dbt_sdurry
+    tables:
+      - name: src_sales_transactions
+      - name: src_customers
+      - name: src_products
+      - name: src_iot_readings
+      - name: src_locations
