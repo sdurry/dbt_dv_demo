@@ -67,3 +67,4 @@ models:
 
 flags:
   require_generic_test_arguments_property: true
+  use_managed_iceberg: true
